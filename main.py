@@ -14,6 +14,10 @@ df = pd.read_csv("Delivery.csv")
 st.subheader("데이터 미리보기")
 st.dataframe(df.head())
 
+lat_col = '위도'
+lon_col = '경도'
+
+coords = df[[lat_col, lon_col]]
 
 # 클러스터 개수 선택
 n_clusters = st.slider("클러스터 개수 선택 (K)", min_value=2, max_value=10, value=3)
