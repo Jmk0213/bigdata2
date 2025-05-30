@@ -47,3 +47,5 @@ st_folium(m, width=800, height=600)
 
 st.subheader("클러스터링 데이터")
 st.dataframe(df)
+
+st.write(df.columns)
