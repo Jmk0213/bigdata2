@@ -14,17 +14,16 @@ df = pd.read_csv("Delivery.csv")
 st.subheader("데이터 미리보기")
 st.dataframe(df.head())
 
+# 위도/경도 컬럼명 고정 (데이터 컬럼명에 맞게 변경!)
 lat_col = '위도'
 lon_col = '경도'
-
-coords = df[[lat_col, lon_col]]
 
 # 클러스터 개수 선택
 n_clusters = st.slider("클러스터 개수 선택 (K)", min_value=2, max_value=10, value=3)
 
 # K-Means 클러스터링
-kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 coords = df[[lat_col, lon_col]]
+kmeans = KMeans(n_clusters=n_clusters, random_state=42)
 df['Cluster'] = kmeans.fit_predict(coords)
 
 # 지도 그리기
