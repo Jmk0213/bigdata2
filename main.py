@@ -43,6 +43,15 @@ for i, row in df.iterrows():
         popup=f"Cluster {row['Cluster']}"
     ).add_to(m)
 
+# 군집점 표시
+centroids = kmeans.cluster_centers_
+for i, (lat, lon) in enumerate(centroids):
+    folium.Marker(
+        location=[lat, lon],
+        icon=folium.Icon(color='black', icon='star'),
+        popup=f"Center {i}"
+    ).add_to(m)
+
 st.subheader("클러스터링 결과 지도")
 st_folium(m, width=800, height=600)
 
