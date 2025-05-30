@@ -4,6 +4,7 @@ from sklearn.cluster import KMeans
 import folium
 from streamlit_folium import st_folium
 
+
 st.set_page_config(page_title="배달 구역 클러스터링", layout="wide")
 
 st.title("🚚 배달 위치 클러스터링 지도")
@@ -13,6 +14,8 @@ st.markdown("K-Means 알고리즘을 활용해 배달 구역을 구분하고 지
 df = pd.read_csv("Delivery.csv")
 st.subheader("데이터 미리보기")
 st.dataframe(df.head())
+
+st.write(df.columns)
 
 # 위도/경도 컬럼명 고정 (데이터 컬럼명에 맞게 변경!)
 lat_col = 'latitude'
@@ -48,4 +51,3 @@ st_folium(m, width=800, height=600)
 st.subheader("클러스터링 데이터")
 st.dataframe(df)
 
-st.write(df.columns)
