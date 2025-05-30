@@ -14,9 +14,6 @@ df = pd.read_csv("Delivery.csv")
 st.subheader("데이터 미리보기")
 st.dataframe(df.head())
 
-# 위도/경도 컬럼 선택
-lat_col = st.selectbox("위도 컬럼 선택", df.columns)
-lon_col = st.selectbox("경도 컬럼 선택", df.columns)
 
 # 클러스터 개수 선택
 n_clusters = st.slider("클러스터 개수 선택 (K)", min_value=2, max_value=10, value=3)
@@ -36,7 +33,7 @@ for i, row in df.iterrows():
     folium.CircleMarker(
         location=[row[lat_col], row[lon_col]],
         radius=5,
-        color=colors[row['Cluster'] % len(colors)],
+        color=colors[int(row['Cluster']) % len(colors)],
         fill=True,
         fill_opacity=0.7,
         popup=f"Cluster {row['Cluster']}"
